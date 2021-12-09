@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>FSharp.Data</id>
+    <version>4.2.6</version>
+    <authors>Tomas Petricek;Gustavo Guerra;Colin Bull;fsprojects contributors</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+    <icon>logo.png</icon>
+    <projectUrl>https://fsprojects.github.io/FSharp.Data/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/fsprojects/FSharp.Data/master/docs/img/logo.png</iconUrl>
+    <description>The FSharp.Data package contains type providers and utilities to access
+  common data formats (CSV, HTML, JSON and XML in your F# applications and scripts. It also
+  contains  helpers for parsing CSV, HTML and JSON files and for sending HTTP requests.</description>
+    <releaseNotes>Update TPSDK dependencies
+[HtmlState: restore FormattedMode if still in pre after char ref](https://github.com/fsprojects/FSharp.Data/pull/1414)
+[HtmlNode.ToString(): fix self-closing tags on empty non-void elements](https://github.com/fsprojects/FSharp.Data/pull/1413)
+[non seekable multipart form files](https://github.com/fsprojects/FSharp.Data/pull/1415)</releaseNotes>
+    <tags>F# fsharp data typeprovider WorldBank CSV HTML CSS JSON XML HTTP linqpad-samples</tags>
+    <repository type="git" url="https://github.com/fsprojects/FSharp.Data" commit="f5f4e1e638e94b2172f5d7d2ffe64c49f159da06" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="FSharp.Core" version="4.7.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

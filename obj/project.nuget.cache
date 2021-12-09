@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Wx2rqu+fUbX56Ivk8F4G8rYw1RvRrQiCB3cDElopFhXDPlfqbOWilelP7HWqRbfh7yXmusOpQfBmGhokFHqwwA==",
+  "success": true,
+  "projectFilePath": "/home/fabrizio/Development/fsharp/dispata/dispata.fsproj",
+  "expectedPackageFiles": [
+    "/home/fabrizio/.nuget/packages/fsharp.core/6.0.1/fsharp.core.6.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
