@@ -3,3 +3,4 @@ FSharp.Data
 Mondocks.NET
 SQLProvider
 Npgsql.FSharp
+MathNet.Numerics.FSharp
