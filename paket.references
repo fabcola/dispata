@@ -1,2 +1,5 @@
 FSharp.Core
 FSharp.Data
+Mondocks.NET
+SQLProvider
+Npgsql.FSharp
