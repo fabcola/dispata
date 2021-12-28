@@ -51,6 +51,7 @@ let articlePage (pii:string) = match pii.Length with
                                 | _ -> failwith "Incorrect article pii"
 
 let journalIssue = HtmlDocument.Load("https://www.sciencedirect.com/journal/applied-energy/vol/307/suppl/C")
+
 // Can i create a generic field finder?
 let getArticleKeywords (articlePage:HtmlDocument) = 
     articlePage.Descendants["div"]
@@ -64,7 +65,7 @@ let getArticleMeta (articlePage:HtmlDocument) =
     |> Seq.map(fun s -> 
         (s.AttributeValue("name"),s.AttributeValue("content")))
 
-let getJournalIssueLinks (journalIssue:HtmlDocument) = 
+let getJournalIssueArticles (journalIssue:HtmlDocument) = 
     journalIssue.Descendants["a"]
     |> Seq.map (fun a -> 
         a.AttributeValue("href"))
@@ -75,7 +76,7 @@ let getJournalIssueLinks (journalIssue:HtmlDocument) =
     |> Seq.distinct
 
 let getJournalIssueKeywords (articleList:HtmlDocument) =
-    getJournalIssueLinks articleList
+    getJournalIssueArticles articleList
     |> Seq.map(fun art ->
         art
         |> articlePage
@@ -83,3 +84,33 @@ let getJournalIssueKeywords (articleList:HtmlDocument) =
     |> Seq.concat
     |> Seq.toList
 
+// Get all volumes
+let getJournalIssue (issue_id:int) = HtmlDocument.Load("https://www.sciencedirect.com/journal/applied-energy/vol/"+string(issue_id)+"/suppl/C")
+
+let saveKeywords (keywords:string list) = File.WriteAllLines(@"test.csv",keywords)
+
+let getAllJournalKeywords (journalName:string, lastIssueId:int) = 
+    [303 .. 308]
+    |> List.map(getJournalIssue)
+    |> List.map(getJournalIssueKeywords)
+    |> List.concat
+    |> saveKeywords
+
+
+// A word counter for the csv file
+let wordCounter  (singleWords:seq<string>) (targetWord:string)  = 
+    let count = Seq.fold(fun (acc:int) (word:string)->  if word.Equals(targetWord) then acc+1 else acc+0) 0 singleWords
+    (targetWord,count)
+
+let getAllWords (filename:string) = 
+    let csv = CsvFile.Load(filename, hasHeaders = true)
+    csv.Rows
+    |> Seq.map(fun (kw:CsvRow) -> kw.[0].Split(' '))
+    |> Seq.concat
+
+let countAllWords (filename:string) = 
+    let allWords = (getAllWords filename)
+    Seq.distinct(allWords)
+    |> Seq.map(wordCounter allWords)
+
+// Still need to sort -> then use the embeddings for clustering
