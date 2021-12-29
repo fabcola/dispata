@@ -6,3 +6,5 @@ nuget MathNet.Numerics.FSharp
 nuget Mondocks.NET
 nuget Npgsql.FSharp
 nuget SQLProvider
+nuget System.Data.OleDb
+nuget System.DAta.SqlClient
