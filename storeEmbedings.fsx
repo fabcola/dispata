@@ -3,7 +3,6 @@
 #r "nuget: MathNet.Numerics.FSharp"
 #r "C:/Users/COF1SGP/OneDrive - Robert Bosch GmbH/Documents/Visual Studio 2015/Projects/dispata/packages/SQLProvider/lib/net472/FSharp.Data.SqlProvider.dll"
 #r "FSharp.Data.SqlProvider.dll"
-open FSharp.Data.Sql
 open FSharp.Data
 open System.IO
 open MathNet.Numerics.LinearAlgebra
@@ -37,10 +36,3 @@ let embeddings = File.ReadLines(@"C:\Users\COF1SGP\OneDrive - Robert Bosch GmbH\
                         |> Seq.map(fun emb -> emb.Split(' '))
                         |> Seq.map(fun ls -> (ls.[0],String.concat "," ls[1..]))
 
-[<Literal>]
-let connectionString1 = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source= @ C:/Users/COF1SGP/OneDrive - Robert Bosch GmbH/Documents/word2vec.accdb"
-
-[<Literal>] 
-let dnsConn = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=C:\Users\COF1SGP\OneDrive - Robert Bosch GmbH\Documents\word2vec.accdb"
-type db = SqlDataProvider<Common.DatabaseProviderTypes.ODBC, dnsConn>
-let ctx = db.GetDataContext()

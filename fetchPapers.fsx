@@ -6,24 +6,6 @@ open System.IO
 open MathNet.Numerics.LinearAlgebra
 open Npgsql.FSharp
 
-//////////////////// ADD DATA to POSTGRESQL /////////////////////
-let addWord (word:string, vector:int64[]) : int =
-    let connectionString = "Host=localhost; Database=word2vec; Username=postgres; Password=admin;"
-    connectionString
-    |> Sql.connect
-    |> Sql.query "INSERT INTO public.encodings (word, encoder) VALUES (@word, @vector)"
-    |> Sql.parameters [ "@word", Sql.text word; "@vector", Sql.int64Array vector ]
-    |> Sql.executeNonQuery
-
-let convertEmbedding (word:string[]) = 
-    (word.[0], Array.map(fun x -> int64((float x)*1.0e6)) word.[1..])
-
-let wordEmbeddings = File.ReadAllLines(@"C:\Users\Fabrizio\Downloads\17\model.txt")
-                        |> Seq.map(fun (w:string) -> w.Split(" "))
-                        |> Seq.map(convertEmbedding)
-                        |> Seq.toList
-                        |> List.map(addWord) 
-                        
 //////////////////////////////////////////////////////////////////
 
 let getWordEncoding (word:string) =
@@ -108,9 +90,21 @@ let getAllWords (filename:string) =
     |> Seq.map(fun (kw:CsvRow) -> kw.[0].Split(' '))
     |> Seq.concat
 
+let storeWordCounts (words:seq<string*int>) = 
+    let csvTuples = Seq.map(fun (x:string,y:int) -> x+","+string(y)) words
+    File.WriteAllLines(@"test_sorted.csv",csvTuples)
+
 let countAllWords (filename:string) = 
     let allWords = (getAllWords filename)
     Seq.distinct(allWords)
     |> Seq.map(wordCounter allWords)
-
+    |> Seq.sortByDescending(fun (x,y)->y)
 // Still need to sort -> then use the embeddings for clustering
+
+let sortedWords = countAllWords  "C:/Users/Fabrizio/Documents/Development/fsharp/dispata/dispata/test.csv"
+storeWordCounts sortedWords
+
+// NEXT: exclude conjunctions, prepositions etc.. from the count
+// Get the embeddings of each word
+// Clustering!
+// Cool plotting (words that are as big as their count, you know which kind)
