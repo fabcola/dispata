@@ -2,6 +2,7 @@ source https://www.nuget.org/api/v2
 
 nuget FSharp.Core
 nuget FSharp.Data
+nuget FSharp.Stats
 nuget MathNet.Numerics.FSharp
 nuget Mondocks.NET
 nuget Npgsql.FSharp

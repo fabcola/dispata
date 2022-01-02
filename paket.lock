@@ -3,9 +3,18 @@ NUGET
     FSharp.Core (6.0.1)
     FSharp.Data (4.2.6)
       FSharp.Core (>= 4.7.2) - restriction: >= netstandard2.0
+    FSharp.Stats (0.4.2)
+      FSharp.Core (>= 4.7.2) - restriction: >= netstandard2.0
+      FSharpAux (>= 1.0) - restriction: >= netstandard2.0
+      FSharpAux.IO (>= 1.0) - restriction: >= netstandard2.0
     FSharp.SystemTextJson (0.17.4) - restriction: >= netstandard2.0
       FSharp.Core (>= 4.7) - restriction: >= netstandard2.0
       System.Text.Json (>= 4.6) - restriction: >= netstandard2.0
+    FSharpAux (1.1) - restriction: >= netstandard2.0
+      FSharp.Core (>= 6.0.1) - restriction: >= netstandard2.0
+    FSharpAux.IO (1.1) - restriction: >= netstandard2.0
+      FSharp.Core (>= 6.0.1) - restriction: >= netstandard2.0
+      FSharpAux (>= 1.1) - restriction: >= netstandard2.0
     MathNet.Numerics (4.15) - restriction: || (>= net45) (>= netstandard1.6)
       NETStandard.Library (>= 2.0.3) - restriction: && (< net40) (>= netstandard1.3) (< netstandard2.0)
       System.Runtime (>= 4.3) - restriction: && (< net40) (>= netstandard1.3) (< netstandard2.0)

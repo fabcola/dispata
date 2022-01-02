@@ -6,3 +6,4 @@ Npgsql.FSharp
 MathNet.Numerics.FSharp
 System.DAta.SqlClient
 System.Data.OleDb
+FSharp.Stats
